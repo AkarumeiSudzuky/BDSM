@@ -9,7 +9,7 @@ import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(GUI::new);
+//        SwingUtilities.invokeLater(GUI::new);
 
         DbConnector dbConnector = new DbConnector();
         Connection connection = null;
@@ -21,39 +21,16 @@ public class Main {
             // This will only create the database and insert default data if the database does not exist
             dbManager.setupDatabase();
 
-
             connection = dbConnector.connect("bdsm");
             DBInsertUpdateDelete crud = new DBInsertUpdateDelete(connection);
 
-            // Enter data using BufferReader
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Provide username: ");
-            String username = reader.readLine();
-            System.out.println("Provide password:");
-            String password = reader.readLine();
-            System.out.println("Provide page url:");
-            String strUrl = reader.readLine();
-            String pageName = nameExtracter(strUrl);
-//            System.out.println("Provide page block time:");
-//            String pageBlockTime = reader.readLine();
-            String pageUrl= urlparser(strUrl);
-            System.out.println(pageUrl);
-            System.out.println(pageName);
-
-            //Inserts
-//            crud.insert_user(username,password);
-//            crud.insert_list(2);
-//            crud.insert_webpage(pageName,pageUrl);
-//            crud.insert_block(Integer.parseInt(pageBlockTime),6,2);
-
+            new LoginManager();
 
 
         } catch (ClassNotFoundException e) {
             System.err.println("JDBC Driver class not found: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("SQL Error: " + e.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             dbConnector.close();
         }
