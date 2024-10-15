@@ -4,7 +4,9 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.SwingUtilities;
 
 public class Main {
@@ -24,7 +26,14 @@ public class Main {
             connection = dbConnector.connect("bdsm");
             DBInsertUpdateDelete crud = new DBInsertUpdateDelete(connection);
 
-            new LoginManager();
+//            new LoginManager();
+            DbSelect select = new DbSelect(connection);
+            List<String> pages = select.selectPages(); // Get list of page names
+
+            for (String pageName : pages) {
+                System.out.println(pageName); // Print each page name
+            }
+
 
 
         } catch (ClassNotFoundException e) {
