@@ -27,10 +27,10 @@ public class Main {
 
             // Enter data using BufferReader
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//            System.out.print("Provide username: ");
-//            String username = reader.readLine();
-//            System.out.println("Provide password:");
-//            String password = reader.readLine();
+            System.out.print("Provide username: ");
+            String username = reader.readLine();
+            System.out.println("Provide password:");
+            String password = reader.readLine();
             System.out.println("Provide page url:");
             String strUrl = reader.readLine();
             String pageName = nameExtracter(strUrl);
