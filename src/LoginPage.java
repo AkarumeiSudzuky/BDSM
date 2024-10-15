@@ -9,12 +9,13 @@ public class LoginPage {
     private JLabel label_errorMessage;
 
     private LoginManager loginManager;
+    private JFrame frame; // Declare frame as an instance variable
 
     public LoginPage(LoginManager loginManager) {
         this.loginManager = loginManager;
 
         // Create the frame and set its layout
-        JFrame frame = new JFrame("Login");
+        frame = new JFrame("Login"); // Use the instance variable here
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridBagLayout());
         frame.getContentPane().setBackground(Color.WHITE);
@@ -93,6 +94,11 @@ public class LoginPage {
     public void showMessage(String message, boolean isError) {
         label_errorMessage.setText(message);
         label_errorMessage.setVisible(true);
-        label_errorMessage.setForeground(isError ? Color.RED : Color.GREEN); // Set color based on success or error
+        label_errorMessage.setForeground(Color.RED); // Set color based on success or error
+    }
+
+    // Method to dispose of the frame
+    public void dispose() {
+        frame.dispose();
     }
 }

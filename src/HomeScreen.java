@@ -1,35 +1,12 @@
 import java.awt.*;
+import java.util.List;
 import javax.swing.*;
 
-// Class representing a Service with a limit and emergency status
-class Service {
-    String name;
-    int limit; // Limit for the service
-    boolean emergencyStatus; // Emergency status
-
-    public Service(String name, int limit, boolean emergencyStatus) {
-        this.name = name;
-        this.limit = limit;
-        this.emergencyStatus = emergencyStatus;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public boolean isEmergencyStatus() {
-        return emergencyStatus;
-    }
-}
-
+// HomeScreen class representing the main user interface
 public class HomeScreen extends JFrame {
     private DefaultListModel<Service> serviceListModel; // Model for containing services
 
-    public HomeScreen() {
+    public HomeScreen(List<String> names, List<Integer> limits, List<Boolean> emergencyStatuses) {
         setTitle("Home");
         setMaximumSize(new Dimension(1600, 1200));
         setMinimumSize(new Dimension(400, 300));
@@ -39,16 +16,9 @@ public class HomeScreen extends JFrame {
         // Initialize the service list model
         serviceListModel = new DefaultListModel<>();
 
-        // Sample data
-        String[] serviceNames = {"facebook.com", "youtube.com", "pinterest.com", "twitter.com", "instagram.com", "tumblr.com"};
-        // Limits
-        int[] limits = {30, 60, 45, 90, 120, 75};
-        // Initial emergency statuses
-        boolean[] emergencyStatuses = {false, true, false, true, false, true};
-
-        // Populate the service list model
-        for (int i = 0; i < serviceNames.length; i++) {
-            serviceListModel.addElement(new Service(serviceNames[i], limits[i], emergencyStatuses[i]));
+        // Populate the service list model with the data passed
+        for (int i = 0; i < names.size(); i++) {
+            serviceListModel.addElement(new Service(names.get(i), limits.get(i), emergencyStatuses.get(i)));
         }
 
         // JLabel for the services
@@ -125,6 +95,6 @@ public class HomeScreen extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new HomeScreen());
+        SwingUtilities.invokeLater(() -> new HomeScreen(List.of(), List.of(), List.of())); // Initial call with empty data
     }
 }

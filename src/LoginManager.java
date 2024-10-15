@@ -20,8 +20,9 @@ public class LoginManager {
         try {
             boolean isAuthenticated = dbSelect.selectUser(username, password);
             if (isAuthenticated) {
-                loginPage.showMessage("Login successful!", false); // false for no error
-                // Proceed to next screen or logic
+                // Go to HomeScreenManager instead of HomeScreen
+                loginPage.dispose(); // Close the LoginPage
+                new HomeScreenManager(); // Open HomeScreenManager
             } else {
                 loginPage.showMessage("Invalid username or password.", true); // true for error
             }

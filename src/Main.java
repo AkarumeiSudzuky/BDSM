@@ -26,13 +26,13 @@ public class Main {
             connection = dbConnector.connect("bdsm");
             DBInsertUpdateDelete crud = new DBInsertUpdateDelete(connection);
 
-//            new LoginManager();
-            DbSelect select = new DbSelect(connection);
-            List<String> pages = select.selectPages(); // Get list of page names
-
-            for (String pageName : pages) {
-                System.out.println(pageName); // Print each page name
-            }
+            new LoginManager();
+//            DbSelect select = new DbSelect(connection);
+//            List<String> pages = select.selectPages(); // Get list of page names
+//
+//            for (String pageName : pages) {
+//                System.out.println(pageName); // Print each page name
+//            }
 
 
 
